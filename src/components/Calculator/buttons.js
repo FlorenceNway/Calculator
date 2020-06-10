@@ -1,15 +1,15 @@
 export const buttons = [
 	{
 		label: "c",
-		type: "symbol",
+		type: "reset",
 	},
 	{
 		label: "+/-",
-		type: "symbol",
+		type: "posneg",
 	},
 	{
 		label: "%",
-		type: "symbol",
+		type: "percent",
 	},
 	{
 		label: "/",
@@ -69,7 +69,7 @@ export const buttons = [
 	},
 	{
 		label: ".",
-		type: "symbol",
+		type: "decimal",
 	},
 	{
 		label: "=",
