@@ -1,8 +1,9 @@
 .layout {
-	height: 100%;
+	height: 98vh;
 	background-color: #000;
 	display: flex;
 	flex-direction: column;
+	border-radius: 25px;
 
 	.result {
 		flex: 1;
@@ -15,8 +16,9 @@
 	}
 
 	.pad {
-		padding: 1em 0;
+		padding: 1em;
 		background-color:black;
+
 		ul {
 			height: 100%;
 			margin: 0;
@@ -56,6 +58,7 @@
 				.noCal {
 					background-color: #a5a5a5;
 				}  
+		
 			}
 		}
 	}
