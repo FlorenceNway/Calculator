@@ -16,7 +16,7 @@
 
 	.pad {
 		padding: 1em 0;
-		background-color: yellow;
+		background-color:black;
 		ul {
 			height: 100%;
 			margin: 0;
@@ -45,6 +45,17 @@
 					border: 1px solid black;
 					cursor: pointer;
 				}
+				&:active,
+  					&:focus {
+						filter: brightness(120%);
+						background-color: white;
+					  }
+				.symbol {
+					background-color: #f2a33f;
+				}	
+				.noCal {
+					background-color: #a5a5a5;
+				}  
 			}
 		}
 	}
