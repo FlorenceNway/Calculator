@@ -13,7 +13,6 @@ const Calculator = () => {
 
 		switch (action.symbol) {
 			case "+":
-				console.log('+:',firstNumber,secondNumber,symbol)
 				setAction({
 					firstNumber: firstNumber + secondNumber,
 					secondNumber: 0,
@@ -40,24 +39,23 @@ const Calculator = () => {
 					secondNumber: 0,
 					symbol,
 				});
-				break;
-			case "%":
-				setAction({
-					firstNumber: firstNumber / 100,
-					secondNumber: secondNumber / 100,
-					secondNumber: 0,
-					symbol,
-				});
-				break;
-			case "+/-":
-				setAction({
-					firstNumber: firstNumber * -1,
-					secondNumber: firstNumber * -1,
-					symbol,
-				});
 				break;		
 		}
 	};
+
+	const positiveNegative = () => {
+		if(action.secondNumber) {
+			setAction({
+				...action,
+				secondNumber: action.secondNumber * -1,
+			})
+		} else {
+			setAction({
+				...action,
+				firstNumber: action.firstNumber * -1,
+			})
+		}
+	}
 
 	const percentage = () => {
 		if(action.secondNumber) {
@@ -82,7 +80,27 @@ const Calculator = () => {
 		} else {
 			setAction({
 				...action,
-				firstNumber: 0
+				firstNumber: 0,
+				symbol: ""
+
+			})
+		}
+	}
+	
+	const decimal = () => {
+		if(action.secondNumber) {
+			if(action.secondNumber.include('.')) {
+				const number2 = action.secondNumber.string()
+				number2 += '.'
+			}
+			setAction({
+				...action,
+				secondNumber: action.secondNumber
+			})
+		} else {
+			setAction({
+				...action,
+				firstNumber: action.firstNumber
 			})
 		}
 	}
@@ -104,7 +122,6 @@ const Calculator = () => {
 				firstNumber: parseInt(newNumber),
 			});
 		} else if (type === "symbol") {
-			
 			if (action.secondNumber && action.firstNumber) {
 				calculate(action.firstNumber, action.secondNumber, value);
 			} else {
@@ -113,11 +130,18 @@ const Calculator = () => {
 					symbol: value,
 				});
 			}
+
 		} else if (type === "reset") {
-				reset()
+			reset()
 
 		} else if (type === "percent") {
-				percentage()
+			percentage()
+
+		} else if (type === "posneg") {
+			positiveNegative()
+
+		} else if (type === "decimal") {
+			decimal()
 		}
 	};
 
@@ -135,6 +159,10 @@ const Calculator = () => {
 									data-type={type}
 									data-value={label}
 									onClick={clickHandler}
+									className = {type === 'symbol'? "symbol" :
+										type ==="posneg" || type === "reset" || type === "percent" ? "noCal" : 
+										label === 0 ? "zero" : ""
+									}
 								>
 									{label}
 								</span>
