@@ -50,9 +50,17 @@ const Calculator = () => {
 			case "c":
 				setAction({
 					firstNumber: 0,
+					secondNumber: 0,
 					symbol,
 				});
-				break;	
+				break;
+			case "+/-":
+				setAction({
+					firstNumber: firstNumber * -1,
+					secondNumber: firstNumber * -1,
+					symbol,
+				});
+				break;		
 		}
 	};
 
