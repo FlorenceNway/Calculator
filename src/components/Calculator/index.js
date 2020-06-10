@@ -160,8 +160,7 @@ const Calculator = () => {
 									data-value={label}
 									onClick={clickHandler}
 									className = {type === 'symbol'? "symbol" :
-										type ==="posneg" || type === "reset" || type === "percent" ? "noCal" : 
-										label === 0 ? "zero" : ""
+										type ==="posneg" || type === "reset" || type === "percent" ? "noCal" : ""
 									}
 								>
 									{label}
