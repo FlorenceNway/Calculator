@@ -47,11 +47,11 @@
 					border: 1px solid black;
 					cursor: pointer;
 				}
-				&:active,
-  					&:focus {
-						filter: brightness(120%);
-						background-color: white;
-					  }
+				&:hover {
+					filter: brightness(130%);
+					border-radius: 50%;
+					z-index: 1;
+				}
 				.symbol {
 					background-color: #f2a33f;
 				}	
