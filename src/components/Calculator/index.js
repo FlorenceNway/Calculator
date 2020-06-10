@@ -10,8 +10,10 @@ const Calculator = () => {
 	});
 
 	const calculate = (firstNumber, secondNumber, symbol) => {
+
 		switch (action.symbol) {
 			case "+":
+				console.log('+:',firstNumber,secondNumber,symbol)
 				setAction({
 					firstNumber: firstNumber + secondNumber,
 					secondNumber: 0,
@@ -47,13 +49,6 @@ const Calculator = () => {
 					symbol,
 				});
 				break;
-			case "c":
-				setAction({
-					firstNumber: 0,
-					secondNumber: 0,
-					symbol,
-				});
-				break;
 			case "+/-":
 				setAction({
 					firstNumber: firstNumber * -1,
@@ -63,6 +58,34 @@ const Calculator = () => {
 				break;		
 		}
 	};
+
+	const percentage = () => {
+		if(action.secondNumber) {
+			setAction({
+				...action,
+				secondNumber: action.secondNumber / 100
+			})
+		} else {
+			setAction({
+				...action,
+				firstNumber: action.firstNumber / 100
+			})
+		}
+	}
+
+	const reset = () => {
+		if(action.secondNumber) {
+			setAction({
+				...action,
+				secondNumber: 0,
+			})
+		} else {
+			setAction({
+				...action,
+				firstNumber: 0
+			})
+		}
+	}
 
 	const clickHandler = (event) => {
 		const value = event.target.dataset.value;
@@ -81,6 +104,7 @@ const Calculator = () => {
 				firstNumber: parseInt(newNumber),
 			});
 		} else if (type === "symbol") {
+			
 			if (action.secondNumber && action.firstNumber) {
 				calculate(action.firstNumber, action.secondNumber, value);
 			} else {
@@ -89,6 +113,11 @@ const Calculator = () => {
 					symbol: value,
 				});
 			}
+		} else if (type === "reset") {
+				reset()
+
+		} else if (type === "percent") {
+				percentage()
 		}
 	};
 
