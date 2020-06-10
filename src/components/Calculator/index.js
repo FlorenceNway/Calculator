@@ -39,6 +39,20 @@ const Calculator = () => {
 					symbol,
 				});
 				break;
+			case "%":
+				setAction({
+					firstNumber: firstNumber / 100,
+					secondNumber: secondNumber / 100,
+					secondNumber: 0,
+					symbol,
+				});
+				break;
+			case "c":
+				setAction({
+					firstNumber: 0,
+					symbol,
+				});
+				break;	
 		}
 	};
 
