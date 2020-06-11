@@ -87,12 +87,8 @@ const Calculator = () => {
 		}
 	}
 	
-	const decimal = () => {
-		if(action.secondNumber) {
-			if(action.secondNumber.include('.')) {
-				const number2 = action.secondNumber.string()
-				number2 += '.'
-			}
+	const decimal = (value) => {
+		if(action.secondNumber) {	
 			setAction({
 				...action,
 				secondNumber: action.secondNumber
@@ -141,7 +137,9 @@ const Calculator = () => {
 			positiveNegative()
 
 		} else if (type === "decimal") {
-			decimal()
+			const val = parseInt(value)
+			if (value.indexOf('.') === -1) value = value + '.'
+			decimal(value)
 		}
 	};
 
