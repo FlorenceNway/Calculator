@@ -88,20 +88,6 @@ const Calculator = () => {
 		}
 	}
 	
-	const decimal = (value) => {
-		if(action.secondNumber) {	
-			setAction({
-				...action,
-				secondNumber: action.secondNumber
-			})
-		} else {
-			setAction({
-				...action,
-				firstNumber: action.firstNumber
-			})
-		}
-	}
-
 	const clickHandler = (event) => {
 		const value = event.target.dataset.value;
 		const type = event.target.dataset.type;
