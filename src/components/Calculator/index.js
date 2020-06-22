@@ -7,6 +7,7 @@ const Calculator = () => {
 		symbol: "",
 		firstNumber: 0,
 		secondNumber: 0,
+		currentValue: 0,
 	});
 
 	const calculate = (firstNumber, secondNumber, symbol) => {
@@ -105,19 +106,57 @@ const Calculator = () => {
 		const value = event.target.dataset.value;
 		const type = event.target.dataset.type;
 
-		if (type === "number" && action.symbol && action.firstNumber) {
+		if (action.secondNumber && type === "decimal") {	
+			let second = action.secondNumber // 2
+			second = second.toString()
+			const conCatwithDot = second + value
+			setAction({
+				...action,
+				secondNumber: conCatwithDot,
+			});	  
+
+	   }else if (type=="number" && action.secondNumber) {
+			if(action.secondNumber.includes('.')) {
+				const newNumber = action.secondNumber + value
+				setAction({
+					...action,
+					secondNumber: parseFloat(newNumber),
+				})
+			}
+
+		}else if (type === "number" && action.symbol && action.firstNumber) {
 			const newNumber = action.secondNumber + value;
 			setAction({
 				...action,
 				secondNumber: parseInt(newNumber),
-			});
+			})
+
+		} else if (type=="number" && action.firstNumber) {
+			if(action.firstNumber.includes('.')) {
+				const newNumber = action.firstNumber + value
+				setAction({
+					...action,
+					firstNumber: parseFloat(newNumber),
+				})
+			}
+		
 		} else if (type === "number") {
 			const newNumber = action.firstNumber + value;
 			setAction({
 				...action,
 				firstNumber: parseInt(newNumber),
 			});
-		} else if (type === "symbol") {
+
+		}  else if (action.firstNumber && type === "decimal") {	
+			   let first = action.firstNumber 
+			   first = first.toString()
+			   const conCatwithDot = first + value
+			   setAction({
+				   ...action,
+				   firstNumber: conCatwithDot,
+			   });	  
+
+	   }else if (type === "symbol") {
 			if (action.secondNumber && action.firstNumber) {
 				calculate(action.firstNumber, action.secondNumber, value);
 			} else {
@@ -136,11 +175,8 @@ const Calculator = () => {
 		} else if (type === "posneg") {
 			positiveNegative()
 
-		} else if (type === "decimal") {
-			const val = parseInt(value)
-			if (value.indexOf('.') === -1) value = value + '.'
-			decimal(value)
-		}
+		} 
+		
 	};
 
 	return (
